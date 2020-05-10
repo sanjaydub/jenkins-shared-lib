@@ -1,5 +1,5 @@
-def call(Map config) {
+def call(Map m) {
 	node{
-		git url: '${config.name}'
+		git url: '${m.name}'
 	}
 }	
