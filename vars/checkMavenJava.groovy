@@ -1,7 +1,6 @@
-def call() {
-	steps {
-                echo 'Hello World'
-                sh 'mvn -version'
-                sh 'java -version'
-            }
+def call(body) {
+	echo 'Hello World'
+	sh 'mvn -version'
+	sh 'java -version'
+
 }	
