@@ -16,9 +16,56 @@ Setup instructions
 2. Then create a Jenkins job with the following pipeline (note that the underscore _ is not a typo):
 
 ```
+////// Example-1 --> call shared lib in stages - as script
 @Library('my-jenkins-shared-lib')_
+stage('Checkin Maven & Java') {
+    checkMJ()
+}
+stage('Checkout from git') {
+	gitCheckoutStage name: 'https://github.com/sanjaydub/Allure_Maven_TestNG.git'
+}
+stage('Building the code'){
+    buildJavaCodeStage()			
+}		
+stage('CT - Executing Automated Testcases'){
+    runTestsStage()
+}
+stage('Capture Allure report'){
+    genAllureTestReportStage()
+}
 
-stage('Check Maven an Java') {
-    checkMavenJava
+////// Example-2 --> call shared steps in stage --> steps --> script (declarative )
+@Library('my-jenkins-shared-lib')_
+pipeline {
+    agent any
+    stages {
+        stage('Checkin Maven & Java') {
+            steps {
+                script{checkMavenJava()}
+            }
+        }		
+		stage('Checkout from git') {
+            steps {
+                script{checkOutFromGit('https://github.com/sanjaydub/Allure_Maven_TestNG.git')}
+            }
+        }		
+		stage('Building the code'){
+            steps{
+				script{buildJavaCode()}
+            }			
+        }		
+		stage('CT - Executing Automated Testcases'){
+            steps{
+                script{runTests()}
+            }
+        }
+		stage('Capture Allure report'){
+            steps{
+				script{genAllureTestReport()}
+			}
+        }
+    }
+}
+
 
 Run job!
