@@ -1,4 +1,4 @@
-def call(body) {
+def call() {
 	echo 'Hello World'
 	sh 'mvn -version'
 	sh 'java -version'
