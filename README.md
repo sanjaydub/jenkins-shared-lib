@@ -9,7 +9,8 @@ Setup instructions
   * Default version: Specify a Git reference (branch or commit SHA), e.g. master
   * Retrieval method: Modern SCM
   * Select the Git type
-  * Project repository: https://github.com/sanjaydub/jenkins-shared-lib.git
+  * Shared lib code on git repository: https://github.com/sanjaydub/jenkins-shared-lib.git
+  * Project code base used is https://github.com/sanjaydub/Allure_Maven_TestNG.git
   * Credentials: (leave blank)
   * You may have to turn off ssl verification using:     git.exe config --global http.sslVerify false
 
